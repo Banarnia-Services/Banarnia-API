@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '8.3.2'
+}
+
+group = 'de.banarnia'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
+    maven { url = "https://repo.aikar.co/content/groups/aikar/" }
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:1.18.30"
+    compileOnly "org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT"
+    compileOnly "net.luckperms:api:5.4"
+    implementation "co.aikar:acf-bukkit:0.5.1-SNAPSHOT"
+    implementation "dev.triumphteam:triumph-gui:3.1.10"
+}
+
+shadowJar {
+    relocate 'co.aikar.commands', 'de.banarnia.api.acf'
+    relocate 'co.aikar.locales', 'de.banarnia.api.locales'
+    relocate "dev.triumphteam.gui", "de.banarnia.api.triumphgui"
+}
+
+build.dependsOn shadowJar
