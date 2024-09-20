@@ -65,15 +65,6 @@ public abstract class Database {
     public boolean openConnection() {return openConnection(false);}
 
     /**
-     * Execute a sql update.
-     * @param sql Sql statement.
-     * @return True if it was successful, else false.
-     */
-    public boolean executeUpdate(String sql) {
-        return executeUpdate(sql, null);
-    }
-
-    /**
      * Execute a mysql update.
      * @param sql Sql statement.
      * @param objects Objects to insert.
@@ -109,29 +100,12 @@ public abstract class Database {
     }
 
     /**
-     * Execute an update on another thread.
-     * @param sql Sql statement.
-     */
-    public CompletableFuture<Boolean> executeUpdateAsync(String sql) {
-        return executeUpdateAsync(sql, null);
-    }
-
-    /**
      * Execute an update on another statement.
      * @param sql Sql statement.
      * @param objects Objects to insert.
      */
     public CompletableFuture<Boolean> executeUpdateAsync(String sql, Object... objects) {
         return CompletableFuture.supplyAsync(() -> executeUpdate(sql, objects));
-    }
-
-    /**
-     * Execute a sql query.
-     * @param sql Sql statement.
-     * @return Result.
-     */
-    public ResultSet executeQuery(String sql) {
-        return executeQuery(sql, null);
     }
 
     /**
@@ -159,15 +133,6 @@ public abstract class Database {
         }
 
         return resultSet;
-    }
-
-    /**
-     * Execute a query async.
-     * @param sql Sql statement.
-     * @return Result.
-     */
-    public CompletableFuture<ResultSet> executeQueryAsync(String sql) {
-        return executeQueryAsync(sql, null);
     }
 
     /**
