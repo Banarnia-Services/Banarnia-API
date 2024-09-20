@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '8.3.2'
+    id 'maven-publish'
 }
 
 group = 'de.banarnia'
@@ -32,3 +33,16 @@ shadowJar {
 }
 
 build.dependsOn shadowJar
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/Banarnia-Services/BanarniaAPI"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
