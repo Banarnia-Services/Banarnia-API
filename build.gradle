@@ -26,9 +26,12 @@ dependencies {
 }
 
 shadowJar {
+    archiveClassifier = null
     relocate 'co.aikar.commands', 'de.banarnia.api.acf'
     relocate 'co.aikar.locales', 'de.banarnia.api.locales'
     relocate "dev.triumphteam.gui", "de.banarnia.api.triumphgui"
 }
 
-build.dependsOn shadowJar
+jar {
+    archiveClassifier = 'original'
+}
