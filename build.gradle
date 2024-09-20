@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'de.banarnia'
-version = '1.0'
+version = '1.1'
 
 
 java {
@@ -34,4 +34,8 @@ shadowJar {
 
 jar {
     archiveClassifier = 'original'
+}
+
+artifacts {
+    archives shadowJar
 }
