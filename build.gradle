@@ -6,7 +6,10 @@ plugins {
 group = 'de.banarnia'
 version = '1.0'
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+java {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
     mavenCentral()
