@@ -109,10 +109,10 @@ public final class ItemBuilder {
      */
     private ItemBuilder(String s, ItemStack def) {
         // Null check.
-        if ((s == null || s.length() == 0) && def == null)
+        if ((s == null || s.isEmpty()) && def == null)
             throw new IllegalArgumentException();
 
-        if (s != null && s.length() != 0) {
+        if (s != null && !s.isEmpty()) {
             ItemStack item = null;
 
             // Check if String is a material.
@@ -122,7 +122,7 @@ public final class ItemBuilder {
                 item = new ItemStack(material);
 
                 // Init.
-                init(item, null);
+                init(item);
 
                 return;
             }
@@ -139,28 +139,12 @@ public final class ItemBuilder {
     }
 
     /**
-     * Constructor with material.
-     * @param material Material.
-     */
-    private ItemBuilder(Material material) {
-        this(material, null);
-    }
-
-    /**
      * Constructor with material and flags.
      * @param material Material.
      * @param flags ItemFlag array.
      */
     private ItemBuilder(Material material, ItemFlag... flags) {
         this(new ItemStack(material), flags);
-    }
-
-    /**
-     * Constructor with ItemStack.
-     * @param item ItemStack.
-     */
-    private ItemBuilder(ItemStack item) {
-        this(item, null);
     }
 
     /**
