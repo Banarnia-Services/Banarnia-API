@@ -1,7 +1,6 @@
 package de.banarnia.api.config;
 
 import de.banarnia.api.UtilFile;
-import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,7 +17,6 @@ import java.util.logging.Level;
  */
 public class YamlConfig extends YamlConfiguration implements Config {
 
-    @Getter
     protected File file;
 
     /**
@@ -187,4 +185,7 @@ public class YamlConfig extends YamlConfiguration implements Config {
         return section.getKeys(deep);
     }
 
+    public File getFile() {
+        return file;
+    }
 }

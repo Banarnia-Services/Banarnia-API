@@ -2,8 +2,6 @@ package de.banarnia.api.config;
 
 import de.banarnia.api.UtilFile;
 import de.banarnia.api.UtilVersion;
-import lombok.Getter;
-import lombok.NonNull;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -19,10 +17,8 @@ import java.util.logging.Level;
  */
 public class YamlVersionConfig extends YamlConfig {
 
-    @Getter
     protected String resourcePath;
 
-    @Getter
     protected String version;
 
     private JavaPlugin plugin;
@@ -35,7 +31,10 @@ public class YamlVersionConfig extends YamlConfig {
      * @param version Config version that should be used.
      * @return New YamlVersionConfig.
      */
-    public static YamlVersionConfig of(JavaPlugin plugin, File file, @NonNull String resourcePath, @NonNull String version) {
+    public static YamlVersionConfig of(JavaPlugin plugin, File file, String resourcePath, String version) {
+        if (resourcePath == null || version == null)
+            throw new NullPointerException("Resourcepath and version may not be null");
+
         YamlVersionConfig config = new YamlVersionConfig(plugin, file, resourcePath, version);
         config.loadConfig();
 
@@ -51,7 +50,7 @@ public class YamlVersionConfig extends YamlConfig {
      * @param version Config version that should be used.
      * @return New YamlVersionConfig.
      */
-    public static YamlVersionConfig of(JavaPlugin plugin, File folder, String fileName, @NonNull String resourcePath, @NonNull String version) {
+    public static YamlVersionConfig of(JavaPlugin plugin, File folder, String fileName, String resourcePath, String version) {
         return of(plugin, new File(folder, fileName), resourcePath, version);
     }
 
@@ -64,7 +63,7 @@ public class YamlVersionConfig extends YamlConfig {
      * @param version Config version that should be used.
      * @return New YamlVersionConfig.
      */
-    public static YamlVersionConfig of(JavaPlugin plugin, String folderPath, String fileName, @NonNull String resourcePath, @NonNull String version) {
+    public static YamlVersionConfig of(JavaPlugin plugin, String folderPath, String fileName, String resourcePath, String version) {
         return of(plugin, new File(folderPath), fileName, resourcePath, version);
     }
 
@@ -81,7 +80,7 @@ public class YamlVersionConfig extends YamlConfig {
      * @param resourcePath Path to the default config in the .jar file.
      * @param version Version of the config.
      */
-    protected YamlVersionConfig(JavaPlugin plugin, File file, @NonNull String resourcePath, @NonNull String version) {
+    protected YamlVersionConfig(JavaPlugin plugin, File file, String resourcePath, String version) {
         super(file);
         this.plugin = plugin;
         this.resourcePath = resourcePath;
@@ -139,5 +138,13 @@ public class YamlVersionConfig extends YamlConfig {
 
         // Save.
         return save();
+    }
+
+    public String getResourcePath() {
+        return resourcePath;
+    }
+
+    public String getVersion() {
+        return version;
     }
 }

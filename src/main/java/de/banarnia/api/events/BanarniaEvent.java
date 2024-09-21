@@ -1,6 +1,5 @@
 package de.banarnia.api.events;
 
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -18,10 +17,9 @@ public abstract class BanarniaEvent extends Event {
     }
 
     // Bukkit shit.
-    @Getter
     private static final HandlerList handlers = new HandlerList();
 
-    public static final HandlerList getHandlerList() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 

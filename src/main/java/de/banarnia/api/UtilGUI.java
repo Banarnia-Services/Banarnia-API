@@ -2,6 +2,8 @@ package de.banarnia.api;
 
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.PaginatedGui;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,8 +27,8 @@ public class UtilGUI {
     }
 
     public static void setPaginationItems(PaginatedGui gui, int row, Material material, String prevName, String nextName) {
-        ItemStack prevItem = ItemBuilder.from(material).setName(prevName).build();
-        ItemStack nextItem = ItemBuilder.from(material).setName(nextName).build();
+        ItemStack prevItem = ItemBuilder.from(material).name(Component.text(prevName)).build();
+        ItemStack nextItem = ItemBuilder.from(material).name(Component.text(nextName)).build();
         setPaginationItems(gui, row, prevItem, nextItem);
     }
 

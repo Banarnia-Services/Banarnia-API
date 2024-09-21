@@ -1,6 +1,5 @@
 package de.banarnia.api.sql;
 
-import lombok.Getter;
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
@@ -12,9 +11,7 @@ import java.util.logging.Logger;
 
 public abstract class Database {
 
-    @Getter
     protected String databaseName;
-    @Getter
     protected Connection connection;
     protected Logger logger;
 
@@ -161,5 +158,11 @@ public abstract class Database {
         return executeUpdateAsync("TRUNCATE TABLE '" + name + "';");
     }
 
+    public String getDatabaseName() {
+        return databaseName;
+    }
 
+    public Connection getConnection() {
+        return connection;
+    }
 }
