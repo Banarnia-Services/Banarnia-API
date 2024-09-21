@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'de.banarnia'
-version = '1.2'
+version = '1.2.1'
 
 java {
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
@@ -32,8 +32,4 @@ shadowJar {
 
 jar {
     archiveClassifier = 'original'
-}
-
-artifacts {
-    archives shadowJar
 }
